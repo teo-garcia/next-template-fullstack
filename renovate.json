@@ -4,18 +4,24 @@
   "dependencyDashboard": true,
   "labels": ["dependencies"],
   "platformAutomerge": true,
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "addLabels": ["security"],
+    "automerge": true,
+    "automergeType": "pr"
+  },
   "packageRules": [
     {
       "groupName": "teo-garcia shared configs",
       "schedule": ["on the first day of the month"],
       "automerge": false,
       "reviewers": ["teo-garcia"],
-      "matchPackageNames": ["/^@teo-garcia//"]
+      "matchPackageNames": ["@teo-garcia/**"]
     },
     {
       "groupName": "all dependencies",
       "matchUpdateTypes": ["minor", "patch"],
-      "excludePackagePatterns": ["^@teo-garcia/"],
+      "matchPackageNames": ["!@teo-garcia/**"],
       "schedule": ["on the first day of the month"],
       "minimumReleaseAge": "3 days",
       "automerge": true,
