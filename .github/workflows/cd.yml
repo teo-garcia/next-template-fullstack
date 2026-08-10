@@ -1,62 +1,16 @@
-name: CD
+name: CD (mock)
 
 on:
-  workflow_run:
-    workflows: ["CI"]
-    types:
-      - completed
-    branches: [main]
+  workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.workflow_run.head_branch }}
-  cancel-in-progress: true
+permissions:
+  contents: read
 
 jobs:
-  deploy:
-    if: |
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_branch == 'main'
+  mock-deployment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: ${{ github.event.workflow_run.head_sha }}
-
-      - id: vercel-token
-        name: Check Vercel token
+      - name: Record deployment status
         run: |
-          if [ -n "${{ secrets.VERCEL_TOKEN }}" ]; then
-            echo "present=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "present=false" >> "$GITHUB_OUTPUT"
-            echo "VERCEL_TOKEN is not configured. Skipping deploy."
-          fi
-
-      - if: steps.vercel-token.outputs.present == 'true'
-        uses: pnpm/action-setup@v6
-
-      - if: steps.vercel-token.outputs.present == 'true'
-        uses: actions/setup-node@v6
-        with:
-          node-version: "24"
-          cache: "pnpm"
-
-      - if: steps.vercel-token.outputs.present == 'true'
-        name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - if: steps.vercel-token.outputs.present == 'true'
-        name: Install Vercel CLI
-        run: pnpm add -g vercel@latest
-
-      - if: steps.vercel-token.outputs.present == 'true'
-        name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-
-      - if: steps.vercel-token.outputs.present == 'true'
-        name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-
-      - if: steps.vercel-token.outputs.present == 'true'
-        name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+          echo "## Deployment intentionally disabled" >> "$GITHUB_STEP_SUMMARY"
+          echo "This template validates its production build in CI but does not publish artifacts." >> "$GITHUB_STEP_SUMMARY"
