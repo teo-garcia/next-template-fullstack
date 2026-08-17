@@ -2,7 +2,7 @@ import axe from 'axe-core'
 
 import { render } from '@/lib/test/render'
 
-import HomePage from './page'
+import { HomePage } from './home-page'
 
 test('HomePage renders with providers', () => {
   const { container } = render(<HomePage />)

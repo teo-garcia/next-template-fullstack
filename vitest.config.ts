@@ -5,7 +5,7 @@ export default mergeConfig(
   defineConfig(sharedConfig),
   defineConfig({
     optimizeDeps: {
-      include: ['@tanstack/react-query', 'next-themes'],
+      include: ['@tanstack/react-query', 'better-themes'],
     },
     test: {
       setupFiles: ['./vitest.setup.ts'],

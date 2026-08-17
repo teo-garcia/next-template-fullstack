@@ -1,6 +1,6 @@
-import { Zap } from 'lucide-react'
 import type { Metadata } from 'next'
 
+import { HomePage } from './components/home-page/home-page'
 import { getCanonicalUrl, siteMetadata } from './lib/seo'
 
 export const metadata: Metadata = {
@@ -23,12 +23,8 @@ export const metadata: Metadata = {
   },
 }
 
-const HomePage = () => {
-  return (
-    <section className='flex h-screen flex-col items-center justify-center gap-y-16'>
-      <Zap className='size-48 text-primary  lg:size-56 xl:size-72' />
-    </section>
-  )
+const Page = () => {
+  return <HomePage />
 }
 
-export default HomePage
+export default Page
