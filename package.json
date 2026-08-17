@@ -67,7 +67,7 @@
   "msw": {
     "workerDirectory": "public"
   },
-  "name": "react-template-next",
+  "name": "next-template-fullstack",
   "private": true,
   "scripts": {
     "analyze": "ANALYZE=true next build --webpack",

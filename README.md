@@ -1,6 +1,6 @@
 <div align="center">
 
-# React Template Next
+# Next Template Fullstack
 
 **Production-ready Next.js starter with TypeScript, Tailwind CSS, and modern
 testing**
@@ -128,13 +128,13 @@ preload policy belong to the hosting layer.
 
 ## Related Templates
 
-| Template                     | Description             |
-| ---------------------------- | ----------------------- |
-| `react-template-rr`          | React Router + Vite SPA |
-| `react-native-template-expo` | Expo mobile app         |
-| `nest-template-monolith`     | NestJS backend          |
-| `nest-template-microservice` | NestJS microservice     |
-| `fastapi-template-monolith`  | FastAPI backend         |
+| Template                          | Description                 |
+| --------------------------------- | --------------------------- |
+| `react-router-template-fullstack` | React Router full-stack app |
+| `react-native-template-expo`      | Expo mobile app             |
+| `nest-template-monolith`          | NestJS backend              |
+| `nest-template-microservice`      | NestJS microservice         |
+| `fastapi-template-monolith`       | FastAPI backend             |
 
 ---
 

@@ -1,5 +1,5 @@
 # the name by which the project can be referenced within Serena/when chatting with the LLM.
-project_name: "react-template-next"
+project_name: "next-template-fullstack"
 
 # list of language servers to start when using the LSP backend; choose from:
 #   ada                    al                     angular                ansible                bash
