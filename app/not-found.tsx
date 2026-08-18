@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     index: false,
   },
   title: {
-    absolute: `Page not found | ${siteMetadata.shortName}`,
+    absolute: `${siteMetadata.shortName} | Page not found`,
   },
 }
 

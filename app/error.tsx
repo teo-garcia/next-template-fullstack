@@ -22,7 +22,7 @@ const ErrorPage = (properties: ErrorProps) => {
 
   return (
     <>
-      <title>{`Something went wrong | ${siteMetadata.shortName}`}</title>
+      <title>{`${siteMetadata.shortName} | Something went wrong`}</title>
       <RouteState
         actions={<RouteStateButton onClick={reset}>Try again</RouteStateButton>}
         description='The current route failed to render. You can retry without leaving the page.'

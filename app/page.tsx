@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     url: getCanonicalUrl(),
   },
   title: {
-    absolute: `Home | ${siteMetadata.shortName}`,
+    absolute: `${siteMetadata.shortName} | Home`,
   },
   twitter: {
     card: 'summary',

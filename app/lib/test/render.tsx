@@ -6,32 +6,31 @@ import {
   type RenderOptions,
 } from '@testing-library/react'
 import { ThemeProvider } from 'better-themes/rsc'
-import { createElement, type ReactNode } from 'react'
+import { useState } from 'react'
 
-const createWrapper = (
-  queryClient = new QueryClient({
+const createTestQueryClient = () =>
+  new QueryClient({
     defaultOptions: {
       mutations: { retry: false },
       queries: { gcTime: 0, retry: false },
     },
   })
-) => {
-  return function Wrapper({ children }: { children: ReactNode }) {
-    return createElement(QueryClientProvider, { client: queryClient }, children)
-  }
+
+// A fresh QueryClient per render; a shared one leaks cached queries between
+// tests and makes ordering-dependent failures look like flakes.
+const AllProviders = ({ children }: React.PropsWithChildren) => {
+  const [queryClient] = useState(createTestQueryClient)
+
+  return (
+    <ThemeProvider attribute='class' defaultTheme='light'>
+      <QueryClientProvider client={queryClient}>
+        <div className='min-h-screen'>
+          <main>{children}</main>
+        </div>
+      </QueryClientProvider>
+    </ThemeProvider>
+  )
 }
-
-const QueryWrapper = createWrapper()
-
-const AllProviders = ({ children }: React.PropsWithChildren) => (
-  <ThemeProvider attribute='class' defaultTheme='light'>
-    <QueryWrapper>
-      <div className='min-h-screen'>
-        <main>{children}</main>
-      </div>
-    </QueryWrapper>
-  </ThemeProvider>
-)
 
 const renderWithProviders = (
   ui: React.ReactElement,

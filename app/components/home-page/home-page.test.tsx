@@ -4,7 +4,7 @@ import { render } from '@/lib/test/render'
 
 import { HomePage } from './home-page'
 
-test('HomePage renders with providers', () => {
+test('HomePage renders the hero', () => {
   const { container } = render(<HomePage />)
 
   expect(container.querySelector('section')).not.toBeNull()
@@ -13,6 +13,7 @@ test('HomePage renders with providers', () => {
 
 test('HomePage has no accessibility violations', async () => {
   const { container } = render(<HomePage />)
+
   const results = await axe.run(container)
 
   expect(results.violations).toEqual([])

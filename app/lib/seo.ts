@@ -7,7 +7,7 @@ export const siteMetadata = {
   description:
     'Production-ready Next.js template with typed routes, theme support, health checks, tests, and Docker defaults.',
   name: 'Next Template Fullstack',
-  shortName: 'RTN',
+  shortName: 'NTF',
   url: publicUrl.replace(/\/$/, ''),
 } as const
 

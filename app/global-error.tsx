@@ -23,7 +23,7 @@ const GlobalErrorBoundary = (properties: GlobalErrorProperties) => {
   return (
     <html lang='en'>
       <head>
-        <title>{`Application error | ${siteMetadata.shortName}`}</title>
+        <title>{`${siteMetadata.shortName} | Application error`}</title>
       </head>
       <body>
         <RouteState

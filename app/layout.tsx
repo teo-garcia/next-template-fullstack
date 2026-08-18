@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Geist } from 'next/font/google'
 
 import { GlobalProviders } from './components/global-providers/global-providers'
+import { HealthStatus } from './components/health-status/health-status'
 import { getCanonicalUrl, siteMetadata } from './lib/seo'
 
 export const metadata: Metadata = {
@@ -21,8 +22,8 @@ export const metadata: Metadata = {
     url: getCanonicalUrl(),
   },
   title: {
-    default: siteMetadata.name,
-    template: `%s | ${siteMetadata.shortName}`,
+    default: siteMetadata.shortName,
+    template: `${siteMetadata.shortName} | %s`,
   },
   twitter: {
     card: 'summary',
@@ -44,6 +45,7 @@ const RootLayout = async (properties: React.PropsWithChildren) => {
           <div className='min-h-screen'>
             <main id='main-content'>{children}</main>
           </div>
+          <HealthStatus />
         </GlobalProviders>
       </body>
     </html>
