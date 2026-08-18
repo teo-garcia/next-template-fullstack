@@ -131,7 +131,7 @@ preload policy belong to the hosting layer.
 | Template                          | Description                 |
 | --------------------------------- | --------------------------- |
 | `react-router-template-fullstack` | React Router full-stack app |
-| `react-native-template-expo`      | Expo mobile app             |
+| `expo-template-mobile`            | Expo mobile app             |
 | `nest-template-monolith`          | NestJS backend              |
 | `nest-template-microservice`      | NestJS microservice         |
 | `fastapi-template-monolith`       | FastAPI backend             |
