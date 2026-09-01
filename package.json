@@ -18,7 +18,7 @@
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^10.0.0",
     "@next/bundle-analyzer": "^16.2.4",
-    "@next/eslint-plugin-next": "16.3.2",
+    "@next/eslint-plugin-next": "16.3.3",
     "@playwright/test": "^1.50.0",
     "@tailwindcss/postcss": "^4.1.14",
     "@teo-garcia/eslint-config-shared": "^0.4.2",
@@ -59,7 +59,7 @@
     "vite": "^8.0.0",
     "vitest": "^4.0.0"
   },
-  "packageManager": "pnpm@11.22.0",
+  "packageManager": "pnpm@11.25.0",
   "engines": {
     "node": ">=24"
   },
