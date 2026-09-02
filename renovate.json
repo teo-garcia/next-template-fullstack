@@ -1,13 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>teo-garcia/templates//renovate/active"],
-  "packageRules": [
-    {
-      "description": "Review shared configuration releases after their producer checks pass",
-      "groupName": "teo-garcia shared configs",
-      "matchPackageNames": ["@teo-garcia/**"],
-      "dependencyDashboardApproval": true,
-      "reviewers": ["teo-garcia"]
-    }
-  ]
+  "extends": ["github>teo-garcia/templates//renovate/active"]
 }
