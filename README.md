@@ -94,20 +94,10 @@ Next.js App Router conventions own route-state wiring:
 
 ---
 
-## Shared Governance
-
-| Area               | Tooling                                             |
-| ------------------ | --------------------------------------------------- |
-| Dependency updates | Renovate                                            |
-| Issue intake       | GitHub issue templates                              |
-| Change review      | Pull request template                               |
-| CI                 | GitHub Actions for lint, typecheck, test, and build |
-| Delivery           | Vercel deployment workflow                          |
-
 ## Security Headers
 
-`next.config.ts` applies the governed web header baseline to every route:
-Content Security Policy, Cross-Origin-Opener-Policy, Permissions-Policy,
+`next.config.ts` applies the default security headers to every route: Content
+Security Policy, Cross-Origin-Opener-Policy, Permissions-Policy,
 Referrer-Policy, X-Content-Type-Options, and X-Frame-Options.
 
 HSTS is intentionally deployment-owned because TLS termination and domain
