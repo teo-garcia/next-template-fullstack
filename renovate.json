@@ -1,31 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "dependencyDashboard": true,
-  "labels": ["dependencies"],
-  "platformAutomerge": true,
-  "vulnerabilityAlerts": {
-    "enabled": true,
-    "addLabels": ["security"],
-    "automerge": true,
-    "automergeType": "pr"
-  },
+  "extends": ["github>teo-garcia/templates//renovate/active"],
   "packageRules": [
     {
+      "description": "Review shared configuration releases after their producer checks pass",
       "groupName": "teo-garcia shared configs",
-      "schedule": ["on the first day of the month"],
-      "automerge": false,
-      "reviewers": ["teo-garcia"],
-      "matchPackageNames": ["@teo-garcia/**"]
-    },
-    {
-      "groupName": "all dependencies",
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": ["!@teo-garcia/**"],
-      "schedule": ["on the first day of the month"],
-      "minimumReleaseAge": "3 days",
-      "automerge": true,
-      "automergeType": "pr"
+      "matchPackageNames": ["@teo-garcia/**"],
+      "dependencyDashboardApproval": true,
+      "reviewers": ["teo-garcia"]
     }
   ]
 }
