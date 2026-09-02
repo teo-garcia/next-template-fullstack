@@ -25,7 +25,7 @@
     "@teo-garcia/prettier-config-shared": "^0.2.10",
     "@teo-garcia/tsconfig-shared": "^0.2.1",
     "@teo-garcia/vitest-config-shared": "^0.4.0",
-    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/node": "^24",
