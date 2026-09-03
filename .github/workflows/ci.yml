@@ -54,7 +54,10 @@ jobs:
 
       - name: Start production server
         run: |
-          pnpm exec next start -H 127.0.0.1 -p 43117 > "$RUNNER_TEMP/web-conformance.log" 2>&1 &
+          cp -R public .next/standalone/public
+          mkdir -p .next/standalone/.next
+          cp -R .next/static .next/standalone/.next/static
+          HOSTNAME=127.0.0.1 PORT=43117 node .next/standalone/server.js > "$RUNNER_TEMP/web-conformance.log" 2>&1 &
           echo "$!" > "$RUNNER_TEMP/web-conformance.pid"
 
       - name: Shared web conformance
