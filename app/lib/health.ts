@@ -3,11 +3,12 @@ export type HealthStatus = 'ok' | 'degraded' | 'down'
 export interface HealthResponse {
   checks?: Record<string, string>
   status: HealthStatus
-  timestamp?: string
-  version?: string
+  timestamp: string
+  version: string
 }
 
 const HEALTH_STATUSES = new Set<HealthStatus>(['ok', 'degraded', 'down'])
+const HEALTH_VERSION = '0.0.0'
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null
@@ -15,6 +16,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 export const createHealthyHealthResponse = (): HealthResponse => ({
   status: 'ok',
   timestamp: new Date().toISOString(),
+  version: HEALTH_VERSION,
 })
 
 export const parseHealthResponse = (value: unknown): HealthResponse => {
@@ -30,10 +32,16 @@ export const parseHealthResponse = (value: unknown): HealthResponse => {
   }
 
   const status = value['status'] as HealthStatus
-  const timestamp =
-    typeof value['timestamp'] === 'string' ? value['timestamp'] : undefined
-  const version =
-    typeof value['version'] === 'string' ? value['version'] : undefined
+  if (typeof value['timestamp'] !== 'string') {
+    throw new TypeError('Health response timestamp is invalid')
+  }
+
+  if (typeof value['version'] !== 'string') {
+    throw new TypeError('Health response version is invalid')
+  }
+
+  const timestamp = value['timestamp']
+  const version = value['version']
   const checksValue = value['checks']
 
   if (checksValue != undefined && !isRecord(checksValue)) {
@@ -55,18 +63,10 @@ export const parseHealthResponse = (value: unknown): HealthResponse => {
           })
         )
 
-  const response: HealthResponse = { status }
+  const response: HealthResponse = { status, timestamp, version }
 
   if (checks !== undefined) {
     response.checks = checks
-  }
-
-  if (timestamp !== undefined) {
-    response.timestamp = timestamp
-  }
-
-  if (version !== undefined) {
-    response.version = version
   }
 
   return response

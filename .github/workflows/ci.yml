@@ -51,3 +51,28 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      - name: Start production server
+        run: |
+          pnpm exec next start -H 127.0.0.1 -p 43117 > "$RUNNER_TEMP/web-conformance.log" 2>&1 &
+          echo "$!" > "$RUNNER_TEMP/web-conformance.pid"
+
+      - name: Shared web conformance
+        uses: teo-garcia/templates/conformance/web@a61b1980d9cbeef0e8bf3d255d7221ca25166810
+        with:
+          base_url: http://127.0.0.1:43117
+
+      - name: Upload conformance log
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: web-conformance-log
+          path: ${{ runner.temp }}/web-conformance.log
+          retention-days: 7
+
+      - name: Stop production server
+        if: always()
+        run: |
+          if [ -f "$RUNNER_TEMP/web-conformance.pid" ]; then
+            kill "$(cat "$RUNNER_TEMP/web-conformance.pid")" 2>/dev/null || true
+          fi

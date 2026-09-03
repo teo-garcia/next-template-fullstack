@@ -13,7 +13,11 @@ afterEach(() => {
 const stubHealthyApi = () => {
   globalThis.fetch = (() =>
     Promise.resolve(
-      Response.json({ status: 'ok', timestamp: '2026-03-15T00:00:00.000Z' })
+      Response.json({
+        status: 'ok',
+        timestamp: '2026-03-15T00:00:00.000Z',
+        version: '0.0.0',
+      })
     )) as typeof globalThis.fetch
 }
 
@@ -23,6 +27,7 @@ const stubDegradedApi = () => {
       Response.json({
         status: 'degraded',
         timestamp: '2026-03-15T00:00:00.000Z',
+        version: '0.0.0',
       })
     )) as typeof globalThis.fetch
 }
