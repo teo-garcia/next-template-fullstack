@@ -25,7 +25,7 @@ export const GlobalProviders = (properties: React.PropsWithChildren) => {
     <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
       <QueryClientProvider client={queryClient}>
         <ThemeProviderContent>{children}</ThemeProviderContent>
-        <ReactQueryDevtools buttonPosition='bottom-left' />
+        <ReactQueryDevtools buttonPosition='bottom-right' />
       </QueryClientProvider>
     </ThemeProvider>
   )

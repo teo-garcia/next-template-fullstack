@@ -1,17 +1,24 @@
-export const setupMSWBrowser = async () => {
+let workerStartPromise: Promise<void> | undefined
+
+const startMSWBrowser = async () => {
+  const { worker } = await import('./browser')
+  await worker.start({
+    onUnhandledRequest: 'bypass',
+    serviceWorker: {
+      url: '/mockServiceWorker.js',
+    },
+  })
+}
+
+export const setupMSWBrowser = () => {
   if (process.env.NODE_ENV === 'production') {
-    return
+    return Promise.resolve()
   }
 
-  try {
-    const { worker } = await import('./browser')
-    await worker.start({
-      onUnhandledRequest: 'bypass',
-      serviceWorker: {
-        url: '/mockServiceWorker.js',
-      },
-    })
-  } catch (error) {
+  workerStartPromise ??= startMSWBrowser().catch((error: unknown) => {
+    workerStartPromise = undefined
     console.error('Failed to start MSW:', error)
-  }
+  })
+
+  return workerStartPromise
 }
