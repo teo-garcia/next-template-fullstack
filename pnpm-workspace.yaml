@@ -4,4 +4,4 @@ allowBuilds:
   sharp: true
 
 overrides:
-  "browserslist@<=4.28.6": 4.28.8
+  "browserslist@<=4.28.6": 4.28.9
