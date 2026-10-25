@@ -1,17 +1,12 @@
 name: Security Scan
 
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: "0 9 * * 1"
   pull_request:
     branches: [main]
-    paths:
-      - ".github/workflows/security-scan.yml"
-      - "docker/**"
-      - "docker-compose.yml"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "pnpm-workspace.yaml"
   workflow_dispatch:
 
 concurrency:
@@ -25,6 +20,8 @@ jobs:
       contents: read
       security-events: write
     uses: teo-garcia/templates/.github/workflows/reusable-security.yml@e0aa52f1d25edeac907bf1dcf2243af4d958e5e0 # delivery-v0.2.0
+    with:
+      fail-on-findings: true
 
   npm-audit:
     name: NPM Audit
@@ -47,3 +44,20 @@ jobs:
 
       - name: Run npm audit
         run: pnpm audit --audit-level=high
+
+  security:
+    name: Security
+    if: always()
+    needs: [shared-security, npm-audit]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Require successful security checks
+        env:
+          SHARED_SECURITY_RESULT: ${{ needs.shared-security.result }}
+          AUDIT_RESULT: ${{ needs.npm-audit.result }}
+        run: |
+          test "$SHARED_SECURITY_RESULT" = success
+          test "$AUDIT_RESULT" = success
