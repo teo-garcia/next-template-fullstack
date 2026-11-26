@@ -59,7 +59,7 @@
     "vite": "^8.2.4",
     "vitest": "^4.1.12"
   },
-  "packageManager": "pnpm@11.28.13",
+  "packageManager": "pnpm@11.29.0",
   "engines": {
     "node": ">=24"
   },
